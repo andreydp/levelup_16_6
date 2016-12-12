@@ -56,6 +56,8 @@ public class Task7
     public static void main(String[] args)
     {
         String[] strs = {"123", "test", "blablabla", "testString", "test"};
+
+        System.out.println(containsCount(strs, "test"));
         System.out.println(printCommaSeparatedLine(strs, 3));
         System.out.println(printCommaSeparatedLineUnique(strs));
     }

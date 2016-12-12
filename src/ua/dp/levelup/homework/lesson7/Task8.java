@@ -14,7 +14,7 @@ public class Task8
         MAY(5, 31, "May", "Май"),
         JUNE(6, 30, "June", "Июнь"),
         JULY(7, 31, "July", "Юиль"),
-        AUGUDT(8, 31, "August", "Август"),
+        AUGUST(8, 31, "August", "Август"),
         SEPTEMBER(9, 30, "September", "Сентябрь"),
         OCTOBER(10, 31, "October", "Октябрь"),
         NOVEMBER(11, 30, "November", "Ноябрь"),
