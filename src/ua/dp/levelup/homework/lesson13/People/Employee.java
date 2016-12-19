@@ -22,7 +22,7 @@ public class Employee
 
     public void setTipProfit(int tipProfit)
     {
-        this.tipProfit = tipProfit;
+        this.tipProfit += tipProfit;
     }
 
     public String getName()

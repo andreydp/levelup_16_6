@@ -30,12 +30,12 @@ public class Barman extends Employee
     public void completeOrder(String drinkName, int amount)
     {
         Order[] orders = getBar().getOrders();
-        for (int i = 0; i < orders.length; i++)
+        for (Order order : orders)
         {
-            if(orders[i].getDrink().getName().equals(drinkName))
+            if (order.getDrink().getName().equals(drinkName))
             {
                 getBar().decreaseDrinkAmount(drinkName, amount);
-                getBar().removeOrder(orders[i].getID());
+                getBar().removeOrder(order.getID());
             }
         }
     }
