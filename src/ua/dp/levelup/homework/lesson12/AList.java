@@ -50,8 +50,7 @@ public class AList
         if (index > size || index < 0)
         {
             throw new RuntimeException();
-        }
-        else if (index <= size)
+        } else if (index <= size)
         {
             int[] tmp = new int[size - index];
             for (int i = 0; i < tmp.length; i++)
@@ -92,8 +91,7 @@ public class AList
         if (index >= size || index < 0)
         {
             throw new RuntimeException();
-        }
-        else if (index < size)
+        } else if (index < size)
         {
             for (int i = index; i < size; i++)
             {

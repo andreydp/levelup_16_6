@@ -1,6 +1,5 @@
 package ua.dp.levelup.homework.lesson7;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

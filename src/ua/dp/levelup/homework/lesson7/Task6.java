@@ -43,7 +43,7 @@ public class Task6
     {
 //        System.out.println(checkEmail("andp@ua.fm"));
 //        System.out.println(checkEmail("poletaiev@gmail.com"));
-        String email = "poletaiev@gmail.com";
+        String email = "poletaiev@gmail";
         System.out.println(checkEmail(email));
     }
 }
