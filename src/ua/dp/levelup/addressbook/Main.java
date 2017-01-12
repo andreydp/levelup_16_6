@@ -14,10 +14,12 @@ public class Main
     {
         JFrame frame = new JFrame();
         frame.setLayout(null);
+        frame.setBounds(0,0,600,400);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CitizenTablePanel panel = new CitizenTablePanel();
-        panel.setVisible(true);
+//        panel.setVisible(true);
         frame.add(panel);
         frame.setVisible(true);
     }
