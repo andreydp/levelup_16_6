@@ -3,9 +3,8 @@ package ua.dp.levelup.addressbook.entity;
 /**
  * Created by java on 10.01.2017.
  */
-public class Citizen
+public class Citizen extends Entity
 {
-    private Long id;
     private String firstName;
     private String lastName;
     private int age;
@@ -21,21 +20,11 @@ public class Citizen
 
     public Citizen(Long id, String firstName, String lastName, int age, long streetId)
     {
-        this.id = id;
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.streetId = streetId;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
     }
 
     public String getFirstName()
@@ -82,7 +71,7 @@ public class Citizen
     public String toString()
     {
         return "Citizen{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
