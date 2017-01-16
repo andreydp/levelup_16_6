@@ -20,5 +20,6 @@ public class Main
         AutoSalon autoSalon = new AutoSalon(cars);
 
         System.out.println("Total price: " + autoSalon.calculateCarsPrice());
+        System.out.println(autoSalon.sortByFuelConsumption());
     }
 }
