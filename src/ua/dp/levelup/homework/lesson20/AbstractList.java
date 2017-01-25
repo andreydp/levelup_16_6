@@ -1,4 +1,4 @@
-package ua.dp.levelup.classwork.lesson20;
+package ua.dp.levelup.homework.lesson20;
 
 import java.util.Optional;
 

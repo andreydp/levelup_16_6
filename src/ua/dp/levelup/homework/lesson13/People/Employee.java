@@ -1,5 +1,7 @@
 package ua.dp.levelup.homework.lesson13.People;
 
+import ua.dp.levelup.homework.lesson13.Bar;
+
 /**
  * Created by andreypo on 12/19/2016.
  */
@@ -8,13 +10,24 @@ public class Employee
     private String name;
     private int age;
     private int tipProfit;
+    private Bar bar;
 
-    Employee(String name, int age)
+    Employee(String name, int age, Bar bar)
     {
         this.name = name;
         this.age = age;
+        this.bar = bar;
     }
 
+    public Bar getBar()
+    {
+        return bar;
+    }
+
+    public void setBar(Bar bar)
+    {
+        this.bar = bar;
+    }
     public int getTipProfit()
     {
         return tipProfit;

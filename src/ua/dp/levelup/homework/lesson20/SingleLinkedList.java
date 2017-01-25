@@ -1,4 +1,4 @@
-package ua.dp.levelup.classwork.lesson20;
+package ua.dp.levelup.homework.lesson20;
 
 import java.util.Optional;
 
@@ -12,13 +12,58 @@ public class SingleLinkedList extends AbstractList
     @Override
     public void addNode(Node node, int index)
     {
-
+        if (index < 0 || index >= size || (null == root && index != 0)) throw new InvalidListIndexException();
+        if (null == node) return;
+        if (index == 0)
+        {
+            addFirst(node);
+            return;
+        }
+        if (index == size - 1)
+        {
+            addLast(node);
+        } else
+        {
+            Node tmp = root;
+            for (int currentIndex = 0; currentIndex < size; currentIndex++)
+            {
+                if (currentIndex == index - 1)
+                {
+                    node.setNext(tmp.next());
+                    tmp.setNext(node);
+                    size++;
+                    break;
+                }
+                tmp = tmp.next();
+            }
+        }
     }
 
     @Override
     public void remove(int index)
     {
-
+        if (index < 0 || index >= size || null == root) throw new InvalidListIndexException();
+        if (size == 1)
+        {
+            removeFirst();
+        }
+        if (index == size - 1)
+        {
+            removeLast();
+        } else
+        {
+            Node tmp = root;
+            for (int currentIndex = 0; currentIndex < size; currentIndex++)
+            {
+                if (currentIndex == index - 1)
+                {
+                    tmp.setNext(tmp.next().next());
+                    size--;
+                    break;
+                }
+                tmp = tmp.next();
+            }
+        }
     }
 
     @Override

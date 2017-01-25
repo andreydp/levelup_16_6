@@ -104,7 +104,7 @@ public class Bar
         {
             if (d.equals(drink))
             {
-                d.setAmount(d.getAmount() + amount);
+                d.changeAmount(d.getAmount() + amount);
                 added = true;
                 break;
             }
@@ -113,7 +113,7 @@ public class Bar
         {
             drinks = Arrays.copyOf(drinks, drinks.length + 1);
             drinks[drinks.length - 1] = drink;
-            drink.setAmount(amount);
+            drink.changeAmount(amount);
         }
     }
 
@@ -137,11 +137,11 @@ public class Bar
     {
         if (position == Positions.BARMAN)
         {
-            addEmployee(new Barman(name, age, ""));
+            addEmployee(new Barman(name, age, this, ""));
         }
         if (position == Positions.WAITER)
         {
-            addEmployee(new Waiter(name, age));
+            addEmployee(new Waiter(name, age, this));
         }
     }
 
@@ -205,7 +205,7 @@ public class Bar
         {
             if (drink.getName().equals(drinkName))
             {
-                drink.setAmount(-1 * amount);
+                drink.changeAmount(-1 * amount);
             }
         }
     }

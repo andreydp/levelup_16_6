@@ -21,8 +21,8 @@ public class Main
         bar.addDrinkToStorage(new Drink("Wine"), 5);
 
 
-        Barman b1 = new Barman("Barman", 33, "Margarita");
-        Waiter w1 = new Waiter("Waiter", 30);
+        Barman b1 = new Barman("Barman", 33, bar,"Margarita");
+        Waiter w1 = new Waiter("Waiter", 30, bar);
         bar.addEmployee(b1);
         bar.addEmployee(w1);
         bar.addEmployee("John Doe", 26, Positions.BARMAN);
@@ -34,6 +34,7 @@ public class Main
         w1.takeTip(200);
         System.out.println(bar);
         b1.completeOrder("Vodka", 2);
+        bar.distributeTipToAllEmployees();
         System.out.println(bar);
     }
 }

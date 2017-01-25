@@ -8,24 +8,12 @@ import ua.dp.levelup.homework.lesson13.Order;
  */
 public class Waiter extends Employee
 {
-    private Bar bar;
 
-    public Bar getBar()
+    public Waiter(String name, int age, Bar bar)
     {
-        return bar;
-    }
-
-    public void setBar(Bar bar)
-    {
-        this.bar = bar;
-    }
-
-    public Waiter(String name, int age)
-    {
-        super(name, age);
+        super(name, age, bar);
 
     }
-
 
     public void takeTip(int amount)
     {
@@ -40,9 +28,9 @@ public class Waiter extends Employee
     @Override
     public String toString()
     {
-        return "Waiter{" +
-                " tipProfit=" + getTipProfit() +
-                "name=" + getName() +
+        return "Waiter{name=" + getName() +
+                ", age=" + getAge() +
+                ", tipProfit=" + getTipProfit() +
                 '}';
     }
 
@@ -54,13 +42,13 @@ public class Waiter extends Employee
 
         Waiter waiter = (Waiter) o;
 
-        return bar != null && getName() != null ? bar.equals(waiter.bar) && getName().equals(waiter.getName()) : waiter.bar == null;
+        return getBar() != null && getName() != null ? getBar().equals(waiter.getBar()) && getName().equals(waiter.getName()) : waiter.getBar() == null;
 
     }
 
     @Override
     public int hashCode()
     {
-        return bar != null ? bar.hashCode() : 0;
+        return getBar() != null ? getBar().hashCode() * 43 * getAge() : 0;
     }
 }

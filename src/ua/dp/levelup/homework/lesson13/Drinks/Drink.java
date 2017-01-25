@@ -11,15 +11,8 @@ public class Drink
     public Drink(String name)
     {
         this.name = name;
-//        this.amount = amount;
     }
 
-
-
-//    public Drink(String name)
-//    {
-//        this.name = name;
-//    }
 
     public String getName()
     {
@@ -32,7 +25,7 @@ public class Drink
         return amount;
     }
 
-    public void setAmount(int amount)
+    public void changeAmount(int amount)
     {
         if (amount < 0 && this.amount - amount < 0)
         {
@@ -40,16 +33,6 @@ public class Drink
         }
         this.amount += amount;
     }
-
-//    public void add(int amt)
-//    {
-//        amount += amt;
-//    }
-//
-//    public void add()
-//    {
-//        add(1);
-//    }
 
     @Override
     public String toString()

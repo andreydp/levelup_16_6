@@ -29,7 +29,7 @@ public class Main
 //        frame.add(labelPanel);
         frame.add(menu);
 
-        JLabel label = new JLabel();
+        final JLabel label = new JLabel();
         label.setText("0");
 
         frame.setLayout(layout);

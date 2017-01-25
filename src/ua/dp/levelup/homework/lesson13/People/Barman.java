@@ -9,11 +9,10 @@ import ua.dp.levelup.homework.lesson13.Order;
 public class Barman extends Employee
 {
     private String specialDrink;
-    Bar bar;
 
-    public Barman(String name, int age, String specialDrink)
+    public Barman(String name, int age, Bar bar, String specialDrink)
     {
-        super(name, age);
+        super(name, age, bar);
         this.specialDrink = specialDrink;
     }
 
@@ -40,22 +39,12 @@ public class Barman extends Employee
         }
     }
 
-    public Bar getBar()
-    {
-        return bar;
-    }
-
-    public void setBar(Bar bar)
-    {
-        this.bar = bar;
-    }
-
     @Override
     public String toString()
     {
         return "Barman{" +
                 "name=" + getName() +
-                " tipProfit=" + getTipProfit() +
+                ", tipProfit=" + getTipProfit() +
                 ", specialDrink='" + specialDrink + '\'' +
                 '}';
     }
