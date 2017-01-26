@@ -5,8 +5,8 @@ package ua.dp.levelup.homework.lesson20;
  */
 public class Node
 {
-   private Node next = null;
-   private Object value;
+   protected Node next = null;
+   protected Object value;
 
     public Node(Object value)
     {

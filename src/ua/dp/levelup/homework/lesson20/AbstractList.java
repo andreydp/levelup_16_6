@@ -1,7 +1,5 @@
 package ua.dp.levelup.homework.lesson20;
 
-import java.util.Optional;
-
 /**
  * Created by java on 24.01.2017.
  */
@@ -26,11 +24,11 @@ public abstract class AbstractList
 
     public abstract void removeLast();
 
-    public abstract Optional<Node> getFirst();
+    public abstract Node getFirst();
 
-    public abstract Optional<Node> getLast();
+    public abstract Node getLast();
 
-    public abstract Optional<Node> get(int index);
+    public abstract Node get(int index);
 
     public abstract boolean isEmpty();
 

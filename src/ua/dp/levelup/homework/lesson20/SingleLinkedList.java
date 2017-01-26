@@ -1,25 +1,22 @@
 package ua.dp.levelup.homework.lesson20;
 
-import java.util.Optional;
-
 /**
  * Created by java on 24.01.2017.
  */
 public class SingleLinkedList extends AbstractList
 {
-    Node root = null;
+    private Node root = null;
 
     @Override
     public void addNode(Node node, int index)
     {
-        if (index < 0 || index >= size || (null == root && index != 0)) throw new InvalidListIndexException();
+        if (index < 0 || index > size || (null == root && index != 0)) throw new InvalidListIndexException();
         if (null == node) return;
         if (index == 0)
         {
             addFirst(node);
-            return;
         }
-        if (index == size - 1)
+        else if (index == size - 1)
         {
             addLast(node);
         } else
@@ -42,12 +39,12 @@ public class SingleLinkedList extends AbstractList
     @Override
     public void remove(int index)
     {
-        if (index < 0 || index >= size || null == root) throw new InvalidListIndexException();
-        if (size == 1)
+        if (index < 0 || index > size || null == root) throw new InvalidListIndexException();
+        if (index == 0)
         {
             removeFirst();
         }
-        if (index == size - 1)
+        else if (index == size - 1)
         {
             removeLast();
         } else
@@ -139,33 +136,33 @@ public class SingleLinkedList extends AbstractList
     }
 
     @Override
-    public Optional<Node> getFirst()
+    public Node getFirst()
     {
-        return Optional.ofNullable(root);
+        return root;
     }
 
     @Override
-    public Optional<Node> getLast()
+    public Node getLast()
     {
         Node last = root;
         while (last != null && last.next() != null)
         {
             last = last.next();
         }
-        return Optional.ofNullable(last);
+        return last;
     }
 
     @Override
-    public Optional<Node> get(int index)
+    public Node get(int index)
     {
-        if (index < 0 || index >= size) return Optional.empty();
+        if (index < 0 || index >= size) throw new InvalidListIndexException();
         Node result = root;
         for (int currentIndex = 0; currentIndex < size; currentIndex++)
         {
             if (currentIndex == index) break;
             result = result.next();
         }
-        return Optional.of(result);
+        return result;
     }
 
     @Override

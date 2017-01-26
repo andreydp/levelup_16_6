@@ -5,28 +5,37 @@ package ua.dp.levelup.homework.lesson20;
  */
 public class DualLinkedNode extends Node
 {
-    private Node previous = null;
+    private DualLinkedNode previous = null;
     public DualLinkedNode(Object value)
     {
         super(value);
     }
 
-    public Node previous()
+    public DualLinkedNode previous()
     {
         return previous;
     }
 
-    public void setPrevious(Node previous)
+    public DualLinkedNode next()
+    {
+        return (DualLinkedNode) next;
+    }
+
+    public void setPrevious(DualLinkedNode previous)
     {
         this.previous = previous;
+    }
+
+    public void setNext(DualLinkedNode next)
+    {
+        this.next = next;
     }
 
     @Override
     public String toString()
     {
         return "DualLinkedNode{" +
-                "next= " + next() +
-                ", previous=" + previous +
+                "value=" + value +
                 '}';
     }
 }
