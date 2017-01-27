@@ -9,14 +9,14 @@ public class Main
     {
 
         AbstractList list = new DoubleLinkedList();
-        list.addLast(new DualLinkedNode(1));
-        list.addLast(new DualLinkedNode(2));
-        list.addLast(new DualLinkedNode(3));
-        list.addLast(new DualLinkedNode(4));
+        list.addLast(new Node(1));
+        list.addLast(new Node(2));
+        list.addLast(new Node(3));
+        list.addLast(new Node(4));
 
-        list.addNode(new DualLinkedNode(5), 3);
-        list.addNode(new DualLinkedNode(6), 3);
-        list.addNode(new DualLinkedNode(7), 3);
+        list.addNode(new Node(5), 3);
+        list.addNode(new Node(6), 3);
+        list.addNode(new Node(7), 3);
 
         list.remove(1);
         list.remove(1);

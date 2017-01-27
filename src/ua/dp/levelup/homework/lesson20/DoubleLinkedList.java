@@ -5,8 +5,8 @@ package ua.dp.levelup.homework.lesson20;
  */
 public class DoubleLinkedList extends AbstractList
 {
-    private DualLinkedNode head = null;
-    private DualLinkedNode tail = null;
+    private Node head = null;
+    private Node tail = null;
 
     @Override
     public void addNode(Node node, int index)
@@ -23,16 +23,15 @@ public class DoubleLinkedList extends AbstractList
             addLast(node);
         } else
         {
-            DualLinkedNode tmp = head;
-            DualLinkedNode dualNode = (DualLinkedNode) node;
+            Node tmp = head;
             for (int currentIndex = 0; currentIndex < size; currentIndex++)
             {
                 if (currentIndex == index - 1)
                 {
-                    dualNode.setNext(tmp.next());
-                    dualNode.setPrevious(tmp);
-                    tmp.setNext(dualNode);
-                    if (currentIndex == size -1) tail = dualNode;
+                    node.setNext(tmp.next());
+                    node.setPrevious(tmp);
+                    tmp.setNext(node);
+                    if (currentIndex == size - 1) tail = node;
                     size++;
                     break;
                 }
@@ -49,13 +48,12 @@ public class DoubleLinkedList extends AbstractList
         if (index == 0)
         {
             removeFirst();
-        }
-        else if (index == size - 1)
+        } else if (index == size - 1)
         {
             removeLast();
         } else
         {
-            DualLinkedNode tmp = head;
+            Node tmp = head;
             for (int currentIndex = 0; currentIndex <= index; currentIndex++)
             {
                 if (currentIndex == index)
@@ -74,16 +72,15 @@ public class DoubleLinkedList extends AbstractList
     public void addFirst(Node node)
     {
         if (null == node) return;
-        DualLinkedNode dualNode = (DualLinkedNode) node;
         if (null == head)
         {
-            head = dualNode;
-            tail = dualNode;
+            head = node;
+            tail = node;
         } else
         {
-            dualNode.setNext(head);
-            head.setPrevious(dualNode);
-            head = dualNode;
+            node.setNext(head);
+            head.setPrevious(node);
+            head = node;
         }
         size++;
     }
@@ -92,16 +89,15 @@ public class DoubleLinkedList extends AbstractList
     public void addLast(Node node)
     {
         if (null == node) return;
-        DualLinkedNode dualNode = (DualLinkedNode) node;
         if (null == tail)
         {
-            addFirst(dualNode);
+            addFirst(node);
             return;
         } else
         {
-            tail.setNext(dualNode);
-            dualNode.setPrevious(tail);
-            tail = dualNode;
+            tail.setNext(node);
+            node.setPrevious(tail);
+            tail = node;
         }
         size++;
     }
@@ -114,8 +110,7 @@ public class DoubleLinkedList extends AbstractList
         {
             head = null;
             tail = null;
-        }
-        else
+        } else
         {
             head.next().setPrevious(null);
             head = head.next();
@@ -131,8 +126,7 @@ public class DoubleLinkedList extends AbstractList
         {
             head = null;
             tail = null;
-        }
-        else
+        } else
         {
             tail.previous().setNext(null);
         }

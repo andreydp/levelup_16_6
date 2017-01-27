@@ -5,8 +5,9 @@ package ua.dp.levelup.homework.lesson20;
  */
 public class Node
 {
-   protected Node next = null;
-   protected Object value;
+    private Node next = null;
+    private Node previous = null;
+    private Object value;
 
     public Node(Object value)
     {
@@ -21,6 +22,18 @@ public class Node
     public void setNext(Node next)
     {
         this.next = next;
+    }
+
+
+    public Node previous()
+    {
+        return previous;
+    }
+
+
+    public void setPrevious(Node previous)
+    {
+        this.previous = previous;
     }
 
     public Object getValue()

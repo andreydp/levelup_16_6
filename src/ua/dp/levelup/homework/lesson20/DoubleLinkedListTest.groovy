@@ -10,7 +10,7 @@ class DoubleLinkedListTest extends Specification {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when: "add node element"
-        list.addFirst(new DualLinkedNode(1))
+        list.addFirst(new Node(1))
 
         then: "check size"
         list.size() == 1
@@ -19,10 +19,10 @@ class DoubleLinkedListTest extends Specification {
 
     def "add first node to list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addFirst(new DualLinkedNode(5));
+        list.addFirst(new Node(5));
 
         when: "add one more element"
-        list.addFirst(new DualLinkedNode(5))
+        list.addFirst(new Node(5))
 
         then: "check size"
         list.size() == 2
@@ -33,7 +33,7 @@ class DoubleLinkedListTest extends Specification {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when: "add node element"
-        list.addLast(new DualLinkedNode(1))
+        list.addLast(new Node(1))
 
         then: "check size"
         list.size() == 1
@@ -42,10 +42,10 @@ class DoubleLinkedListTest extends Specification {
 
     def "add last node to list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addLast(new DualLinkedNode(5));
+        list.addLast(new Node(5));
 
         when: "add one more element"
-        list.addFirst(new DualLinkedNode(5))
+        list.addFirst(new Node(5))
 
         then: "check size"
         list.size() == 2
@@ -64,7 +64,7 @@ class DoubleLinkedListTest extends Specification {
 
     def "add null node to a list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addFirst(new DualLinkedNode(5));
+        list.addFirst(new Node(5));
         when: "add first node element"
         list.addFirst(null)
 
@@ -84,7 +84,7 @@ class DoubleLinkedListTest extends Specification {
     def "remove first on a list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when: "add node element"
-        list.addFirst(new DualLinkedNode(5));
+        list.addFirst(new Node(5));
         list.removeFirst()
 
         then: "check size"
@@ -94,8 +94,8 @@ class DoubleLinkedListTest extends Specification {
     def "remove first on a list with two elements"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when: "add node element"
-        list.addFirst(new DualLinkedNode(5));
-        list.addFirst(new DualLinkedNode(7));
+        list.addFirst(new Node(5));
+        list.addFirst(new Node(7));
         list.removeFirst()
 
         then: "check size and first element value"
@@ -114,7 +114,7 @@ class DoubleLinkedListTest extends Specification {
     def "remove last on a list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when: "add node element"
-        list.addFirst(new DualLinkedNode(5));
+        list.addFirst(new Node(5));
         list.removeLast()
 
         then: "check size"
@@ -124,8 +124,8 @@ class DoubleLinkedListTest extends Specification {
     def "remove last on a list with two elements"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when: "add node element"
-        list.addFirst(new DualLinkedNode(5));
-        list.addFirst(new DualLinkedNode(7));
+        list.addFirst(new Node(5));
+        list.addFirst(new Node(7));
         list.removeLast()
 
         then: "check size and first element value"
@@ -147,9 +147,9 @@ class DoubleLinkedListTest extends Specification {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when:
-        list.addLast(new DualLinkedNode(1));
-        list.addLast(new DualLinkedNode(2));
-        list.addLast(new DualLinkedNode(3));
+        list.addLast(new Node(1));
+        list.addLast(new Node(2));
+        list.addLast(new Node(3));
 
         then:
         list.get(1).value == 2;
@@ -160,7 +160,7 @@ class DoubleLinkedListTest extends Specification {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when:
-        list.addNode(new DualLinkedNode(1),0);
+        list.addNode(new Node(1),0);
 
         then:
         list.size == 1
@@ -170,10 +170,10 @@ class DoubleLinkedListTest extends Specification {
     def "add new element by index to a list with one element"()
     {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addFirst(new DualLinkedNode(1));
+        list.addFirst(new Node(1));
 
         when:
-        list.addNode(new DualLinkedNode(2),1)
+        list.addNode(new Node(2),1)
 
         then:
         list.size() == 2
@@ -195,7 +195,7 @@ class DoubleLinkedListTest extends Specification {
     def "remove an element by 0 index from list with one element"()
     {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addNode(new DualLinkedNode(1),0)
+        list.addNode(new Node(1),0)
 
         when:
         list.remove(0)
@@ -208,9 +208,9 @@ class DoubleLinkedListTest extends Specification {
     def "remove an element by 1 index from list with three elements"()
     {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.addNode(new DualLinkedNode(1),0)
-        list.addNode(new DualLinkedNode(2),0)
-        list.addNode(new DualLinkedNode(3),0)
+        list.addNode(new Node(1),0)
+        list.addNode(new Node(2),0)
+        list.addNode(new Node(3),0)
 
         when:
         list.remove(1)
