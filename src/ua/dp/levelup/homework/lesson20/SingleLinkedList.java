@@ -15,8 +15,7 @@ public class SingleLinkedList extends AbstractList
         if (index == 0)
         {
             addFirst(node);
-        }
-        else if (index == size - 1)
+        } else if (index == size - 1)
         {
             addLast(node);
         } else
@@ -43,8 +42,7 @@ public class SingleLinkedList extends AbstractList
         if (index == 0)
         {
             removeFirst();
-        }
-        else if (index == size - 1)
+        } else if (index == size - 1)
         {
             removeLast();
         } else
@@ -175,5 +173,67 @@ public class SingleLinkedList extends AbstractList
     public boolean isNotEmpty()
     {
         return !isEmpty();
+    }
+
+    public void swap(int nodeA, int nodeB)
+    {
+        if (nodeA < 0 || nodeA >= size || nodeB < 0 || nodeB >= size)
+            throw new InvalidListIndexException("Cannot swap to incorrect index");
+        if (nodeA == nodeB) return;
+
+        Node aNode = get(nodeA);
+        Node bNode = get(nodeB);
+
+        //swap nearby elements
+        if (Math.abs(nodeA - nodeB) == 1)
+        {
+            if (nodeA == 0)
+            {
+                root = bNode;
+                aNode.setNext(bNode.next());
+                bNode.setNext(aNode);
+            } else if (nodeB == 0)
+            {
+                root = aNode;
+                bNode.setNext(aNode.next());
+                aNode.setNext(bNode);
+            } else
+            {
+                if (nodeA < nodeB)
+                {
+                    get(nodeA - 1).setNext(bNode);
+                    aNode.setNext(bNode.next());
+                    bNode.setNext(aNode);
+                }
+                if (nodeB < nodeA)
+                {
+                    get(nodeB - 1).setNext(aNode);
+                    bNode.setNext(aNode.next());
+                    aNode.setNext(bNode);
+                }
+            }
+        } else
+        {
+            if (nodeA == 0)
+            {
+                Node tmp = aNode.next();
+                get(nodeB - 1).setNext(aNode);
+                aNode.setNext(bNode.next());
+                bNode.setNext(tmp);
+                root = bNode;
+
+            } else if (nodeB == 0)
+            {
+                Node tmp = bNode.next();
+                get(nodeA - 1).setNext(bNode);
+                bNode.setNext(aNode.next());
+                aNode.setNext(tmp);
+                root = aNode;
+            }
+            else
+            {
+
+            }
+        }
     }
 }
