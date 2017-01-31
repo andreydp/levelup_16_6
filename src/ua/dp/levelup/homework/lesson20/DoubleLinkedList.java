@@ -1,15 +1,19 @@
 package ua.dp.levelup.homework.lesson20;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Created by andrey on 25.01.17.
  */
-public class DoubleLinkedList extends AbstractList
+public class DoubleLinkedList<T> extends AbstractList<Node<T>>
+        implements Iterable<Node<T>>
 {
-    private Node head = null;
-    private Node tail = null;
+    private Node<T> head = null;
+    private Node<T> tail = null;
 
     @Override
-    public void addNode(Node node, int index)
+    public void add(Node node, int index)
     {
         if (index < 0 || index > size || (null == head && index != 0)) throw new InvalidListIndexException();
         if (null == node) return;
@@ -18,28 +22,17 @@ public class DoubleLinkedList extends AbstractList
             addFirst(node);
             return;
         }
-        if (index == size - 1)
+        if (index == size)
         {
             addLast(node);
         } else
         {
-            Node tmp = head;
-            for (int currentIndex = 0; currentIndex < size; currentIndex++)
-            {
-                if (currentIndex == index - 1)
-                {
-                    node.setNext(tmp.next());
-                    node.setPrevious(tmp);
-                    tmp.setNext(node);
-                    if (currentIndex == size - 1) tail = node;
-                    size++;
-                    break;
-                }
-                tmp = tmp.next();
-            }
+            Node tmp = get(index);
+            node.setNext(tmp.next());
+            node.setPrevious(tmp);
+            tmp.setNext(node);
         }
     }
-
 
     @Override
     public void remove(int index)
@@ -129,6 +122,7 @@ public class DoubleLinkedList extends AbstractList
         } else
         {
             tail.previous().setNext(null);
+            tail = tail.previous();
         }
         size--;
     }
@@ -168,5 +162,46 @@ public class DoubleLinkedList extends AbstractList
     public boolean isNotEmpty()
     {
         return !isEmpty();
+    }
+
+    @Override
+    public Iterator<Node<T>> iterator()
+    {
+        return new Iterator<Node<T>>()
+        {
+            private Node<T> cursor = head;
+
+            @Override
+            public boolean hasNext()
+            {
+                return null != cursor;
+            }
+
+            @Override
+            public Node<T> next()
+            {
+                if (!hasNext()) throw new NoSuchElementException();
+                Node<T> tmp = cursor;
+                cursor = tmp.next();
+                return tmp;
+            }
+        };
+    }
+
+    public void swap(int nodeA, int nodeB)
+    {
+        Node<T> tmpA = get(nodeA);
+        Node<T> tmpB = get(nodeB);
+
+        if (tmpA.previous() == tmpB)
+        {
+            tmpB.setNext(tmpA.next());
+            tmpA.setPrevious(tmpB.previous());
+            tmpA.setNext(tmpB);
+        } else if (tmpA.next() == tmpB)
+        {
+
+        }
+
     }
 }

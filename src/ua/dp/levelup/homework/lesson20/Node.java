@@ -3,45 +3,53 @@ package ua.dp.levelup.homework.lesson20;
 /**
  * Created by java on 24.01.2017.
  */
-public class Node
+public class Node<V>
 {
-    private Node next = null;
-    private Node previous = null;
-    private Object value;
+    private Node<V> next = null;
+    private Node<V> previous = null;
+    private V value;
 
-    public Node(Object value)
+    public Node(V value)
     {
         this.value = value;
     }
 
-    public Node next()
+    public Node<V> next()
     {
         return next;
     }
 
-    public void setNext(Node next)
+    public void setNext(Node<V> next)
     {
         this.next = next;
+        if (null != next)
+        {
+            next.setPrevious(this);
+        }
     }
 
 
-    public Node previous()
+    public Node<V> previous()
     {
         return previous;
     }
 
 
-    public void setPrevious(Node previous)
+    public void setPrevious(Node<V> previous)
     {
         this.previous = previous;
+        if (null != previous)
+        {
+            previous.setNext(this);
+        }
     }
 
-    public Object getValue()
+    public V getValue()
     {
         return value;
     }
 
-    public void setValue(Object value)
+    public void setValue(V value)
     {
         this.value = value;
     }

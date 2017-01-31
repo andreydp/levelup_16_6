@@ -1,7 +1,5 @@
 package ua.dp.levelup.homework.lesson16.calculator.fields;
 
-import ua.dp.levelup.homework.lesson16.calculator.Calculator;
-
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;

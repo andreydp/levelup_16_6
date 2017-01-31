@@ -160,7 +160,7 @@ class SingleLinkedListTest extends Specification {
         SingleLinkedList list = new SingleLinkedList();
 
         when:
-        list.addNode(new Node(1),0);
+        list.add(new Node(1),0);
 
         then:
         list.size == 1
@@ -173,7 +173,7 @@ class SingleLinkedListTest extends Specification {
         list.addFirst(new Node(1));
 
         when:
-        list.addNode(new Node(2),1)
+        list.add(new Node(2),1)
 
         then:
         list.size() == 2
@@ -195,7 +195,7 @@ class SingleLinkedListTest extends Specification {
     def "remove an element by 0 index from list with one element"()
     {
         SingleLinkedList list = new SingleLinkedList();
-        list.addNode(new Node(1),0)
+        list.add(new Node(1),0)
 
         when:
         list.remove(0)
@@ -208,9 +208,9 @@ class SingleLinkedListTest extends Specification {
     def "remove an element by 1 index from list with three elements"()
     {
         SingleLinkedList list = new SingleLinkedList();
-        list.addNode(new Node(1),0)
-        list.addNode(new Node(2),0)
-        list.addNode(new Node(3),0)
+        list.add(new Node(1),0)
+        list.add(new Node(2),0)
+        list.add(new Node(3),0)
 
         when:
         list.remove(1)

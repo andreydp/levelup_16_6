@@ -3,12 +3,12 @@ package ua.dp.levelup.homework.lesson20;
 /**
  * Created by java on 24.01.2017.
  */
-public class SingleLinkedList extends AbstractList
+public class SingleLinkedList extends AbstractList<Node>
 {
     private Node root = null;
 
     @Override
-    public void addNode(Node node, int index)
+    public void add(Node node, int index)
     {
         if (index < 0 || index > size || (null == root && index != 0)) throw new InvalidListIndexException();
         if (null == node) return;
