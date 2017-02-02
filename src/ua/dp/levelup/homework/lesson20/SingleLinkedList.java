@@ -1,14 +1,18 @@
 package ua.dp.levelup.homework.lesson20;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 /**
  * Created by java on 24.01.2017.
  */
-public class SingleLinkedList extends AbstractList<Node>
+public class SingleLinkedList<T> extends AbstractList<Node<T>> implements Iterable<Node<T>>
 {
-    private Node root = null;
+    private Node<T> root = null;
 
     @Override
-    public void add(Node node, int index)
+    public void add(Node<T> node, int index)
     {
         if (index < 0 || index > size || (null == root && index != 0)) throw new InvalidListIndexException();
         if (null == node) return;
@@ -20,7 +24,7 @@ public class SingleLinkedList extends AbstractList<Node>
             addLast(node);
         } else
         {
-            Node tmp = root;
+            Node<T> tmp = root;
             for (int currentIndex = 0; currentIndex < size; currentIndex++)
             {
                 if (currentIndex == index - 1)
@@ -47,7 +51,7 @@ public class SingleLinkedList extends AbstractList<Node>
             removeLast();
         } else
         {
-            Node tmp = root;
+            Node<T> tmp = root;
             for (int currentIndex = 0; currentIndex < size; currentIndex++)
             {
                 if (currentIndex == index - 1)
@@ -62,7 +66,7 @@ public class SingleLinkedList extends AbstractList<Node>
     }
 
     @Override
-    public void addFirst(Node node)
+    public void addFirst(Node<T> node)
     {
         if (null == node) return;
         if (null == root)
@@ -77,7 +81,7 @@ public class SingleLinkedList extends AbstractList<Node>
     }
 
     @Override
-    public void addLast(Node node)
+    public void addLast(Node<T> node)
     {
         if (null == node) return;
         if (null == root)
@@ -85,7 +89,7 @@ public class SingleLinkedList extends AbstractList<Node>
             root = node;
         } else
         {
-            Node tmp = root;
+            Node<T> tmp = root;
             while (tmp.next() != null)
             {
                 tmp = tmp.next();
@@ -98,7 +102,7 @@ public class SingleLinkedList extends AbstractList<Node>
     @Override
     public void removeFirst()
     {
-        Node first = root;
+        Node<T> first = root;
         if (null == first)
         {
             return; //do nothing
@@ -114,15 +118,15 @@ public class SingleLinkedList extends AbstractList<Node>
     @Override
     public void removeLast()
     {
-        Node first = root;
+        Node<T> first = root;
         if (null == first) return;
         if (null == first.next())
         {
             root = null;
         } else
         {
-            Node tmp = first.next();
-            Node prev = tmp;
+            Node<T> tmp = first.next();
+            Node<T> prev = tmp;
             while (null != tmp.next())
             {
                 prev = tmp;
@@ -134,33 +138,33 @@ public class SingleLinkedList extends AbstractList<Node>
     }
 
     @Override
-    public Node getFirst()
+    public Optional<Node<T>> getFirst()
     {
-        return root;
+        return Optional.ofNullable(root);
     }
 
     @Override
-    public Node getLast()
+    public Optional<Node<T>> getLast()
     {
-        Node last = root;
+        Node<T> last = root;
         while (last != null && last.next() != null)
         {
             last = last.next();
         }
-        return last;
+        return Optional.ofNullable(last);
     }
 
     @Override
-    public Node get(int index)
+    public Optional<Node<T>> get(int index)
     {
         if (index < 0 || index >= size) throw new InvalidListIndexException();
-        Node result = root;
+        Node<T> result = root;
         for (int currentIndex = 0; currentIndex < size; currentIndex++)
         {
             if (currentIndex == index) break;
             result = result.next();
         }
-        return result;
+        return Optional.ofNullable(result);
     }
 
     @Override
@@ -181,8 +185,8 @@ public class SingleLinkedList extends AbstractList<Node>
             throw new InvalidListIndexException("Cannot swap to incorrect index");
         if (nodeA == nodeB) return;
 
-        Node aNode = get(nodeA);
-        Node bNode = get(nodeB);
+        Node<T> aNode = get(nodeA).orElse(null);
+        Node<T> bNode = get(nodeB).orElse(null);
 
         //swap nearby elements
         if (Math.abs(nodeA - nodeB) == 1)
@@ -201,39 +205,56 @@ public class SingleLinkedList extends AbstractList<Node>
             {
                 if (nodeA < nodeB)
                 {
-                    get(nodeA - 1).setNext(bNode);
+                    get(nodeA - 1).get().setNext(bNode);
                     aNode.setNext(bNode.next());
                     bNode.setNext(aNode);
                 }
                 if (nodeB < nodeA)
                 {
-                    get(nodeB - 1).setNext(aNode);
+                    get(nodeB - 1).get().setNext(aNode);
                     bNode.setNext(aNode.next());
                     aNode.setNext(bNode);
                 }
             }
-        } else
+        } else if (nodeA == 0)
         {
-            if (nodeA == 0)
-            {
-                Node tmp = aNode.next();
-                get(nodeB - 1).setNext(aNode);
-                aNode.setNext(bNode.next());
-                bNode.setNext(tmp);
-                root = bNode;
+            Node tmp = aNode.next();
+            get(nodeB - 1).get().setNext(aNode);
+            aNode.setNext(bNode.next());
+            bNode.setNext(tmp);
+            root = bNode;
 
-            } else if (nodeB == 0)
-            {
-                Node tmp = bNode.next();
-                get(nodeA - 1).setNext(bNode);
-                bNode.setNext(aNode.next());
-                aNode.setNext(tmp);
-                root = aNode;
-            }
-            else
-            {
-
-            }
+        } else if (nodeB == 0)
+        {
+            Node tmp = bNode.next();
+            get(nodeA - 1).get().setNext(bNode);
+            bNode.setNext(aNode.next());
+            aNode.setNext(tmp);
+            root = aNode;
         }
+    }
+
+    @Override
+    public Iterator<Node<T>> iterator()
+    {
+        return new Iterator<Node<T>>()
+        {
+            private Node<T> cursor = root;
+
+            @Override
+            public boolean hasNext()
+            {
+                return null != cursor;
+            }
+
+            @Override
+            public Node<T> next()
+            {
+                if (!hasNext()) throw new NoSuchElementException();
+                Node<T> tmp = cursor;
+                cursor = tmp.next();
+                return tmp;
+            }
+        };
     }
 }

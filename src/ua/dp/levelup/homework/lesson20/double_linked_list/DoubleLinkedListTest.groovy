@@ -1,6 +1,7 @@
-package ua.dp.levelup.homework.lesson20
+package ua.dp.levelup.homework.lesson20.double_linked_list
 
 import spock.lang.Specification
+import ua.dp.levelup.homework.lesson20.InvalidListIndexException
 
 /**
  * Created by java on 24.01.2017.
@@ -14,7 +15,7 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size"
         list.size() == 1
-        list.getFirst().value == 1
+        list.getFirst().get().value == 1
     }
 
     def "add first node to list with one element"() {
@@ -26,7 +27,7 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size"
         list.size() == 2
-        list.getFirst().value == 5
+        list.getFirst().get().value == 5
     }
 
     def "add last node"() {
@@ -37,7 +38,7 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size"
         list.size() == 1
-        list.getLast().value == 1
+        list.getLast().get().value == 1
     }
 
     def "add last node to list with one element"() {
@@ -49,7 +50,7 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size"
         list.size() == 2
-        list.getLast().value == 5
+        list.getLast().get().value == 5
     }
 
     def "add null node to empty list"() {
@@ -100,8 +101,9 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size and first element value"
         list.size() == 1
-        list.getFirst().getValue() == 5;
+        list.getFirst().get().getValue() == 5;
     }
+
     def "remove last on an empty list"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when: "remove last"
@@ -130,11 +132,10 @@ class DoubleLinkedListTest extends Specification {
 
         then: "check size and first element value"
         list.size() == 1
-        list.getFirst().getValue() == 7;
+        list.getFirst().get().getValue() == 7;
     }
 
-    def "get invalid index"()
-    {
+    def "get invalid index"() {
         DoubleLinkedList list = new DoubleLinkedList();
         when:
         list.get(0);
@@ -142,8 +143,7 @@ class DoubleLinkedListTest extends Specification {
         thrown InvalidListIndexException;
     }
 
-    def "add three elements and get second by index"()
-    {
+    def "add three elements and get second by index"() {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when:
@@ -152,37 +152,34 @@ class DoubleLinkedListTest extends Specification {
         list.addLast(new Node(3));
 
         then:
-        list.get(1).value == 2;
+        list.get(1).get().value == 2;
     }
 
-    def "add new element to 0 index to an empty list"()
-    {
+    def "add new element to 0 index to an empty list"() {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when:
-        list.add(new Node(1),0);
+        list.add(new Node(1), 0);
 
         then:
-        list.size == 1
-        list.getFirst().value == 1
+        list.size() == 1
+        list.getFirst().get().value == 1
     }
 
-    def "add new element by index to a list with one element"()
-    {
+    def "add new element by index to a list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.addFirst(new Node(1));
 
         when:
-        list.add(new Node(2),1)
+        list.add(new Node(2), 1)
 
         then:
         list.size() == 2
-        list.get(1).value == 2
+        list.get(1).get().value == 2
     }
 
 
-    def "remove an element on 0 index to an empty list"()
-    {
+    def "remove an element on 0 index to an empty list"() {
         DoubleLinkedList list = new DoubleLinkedList();
 
         when:
@@ -192,10 +189,9 @@ class DoubleLinkedListTest extends Specification {
         thrown InvalidListIndexException
     }
 
-    def "remove an element by 0 index from list with one element"()
-    {
+    def "remove an element by 0 index from list with one element"() {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.add(new Node(1),0)
+        list.add(new Node(1), 0)
 
         when:
         list.remove(0)
@@ -205,12 +201,11 @@ class DoubleLinkedListTest extends Specification {
     }
 
 
-    def "remove an element by 1 index from list with three elements"()
-    {
+    def "remove an element by 1 index from list with three elements"() {
         DoubleLinkedList list = new DoubleLinkedList();
-        list.add(new Node(1),0)
-        list.add(new Node(2),0)
-        list.add(new Node(3),0)
+        list.add(new Node(1), 0)
+        list.add(new Node(2), 0)
+        list.add(new Node(3), 0)
 
         when:
         list.remove(1)
@@ -218,6 +213,4 @@ class DoubleLinkedListTest extends Specification {
         then:
         list.size() == 2
     }
-
-
 }

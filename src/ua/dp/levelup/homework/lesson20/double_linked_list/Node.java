@@ -1,14 +1,16 @@
-package ua.dp.levelup.homework.lesson20;
+package ua.dp.levelup.homework.lesson20.double_linked_list;
 
 /**
  * Created by java on 24.01.2017.
  */
 public class Node<V>
 {
-    private Node<V> next = null;
-    private V value;
 
-    public Node(V value)
+    private Node<V> next = null;
+    private Node<V> prev = null;
+    private final V value;
+
+    protected Node(V value)
     {
         this.value = value;
     }
@@ -21,16 +23,23 @@ public class Node<V>
     public void setNext(Node<V> next)
     {
         this.next = next;
+//        if (next != null) next.setPrev(this);
+    }
+
+    public Node<V> getPrev()
+    {
+        return prev;
+    }
+
+    public void setPrev(Node<V> prev)
+    {
+        this.prev = prev;
+//        if (prev != null) prev.setNext(this);
     }
 
     public V getValue()
     {
         return value;
-    }
-
-    public void setValue(V value)
-    {
-        this.value = value;
     }
 
     @Override

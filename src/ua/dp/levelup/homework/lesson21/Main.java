@@ -13,6 +13,8 @@ public class Main
 
     public static void main(String[] args)
     {
-        System.out.println(sum(775));
+//        System.out.println(sum(775));
+
+        System.out.println("" + (int)'8');
     }
 }

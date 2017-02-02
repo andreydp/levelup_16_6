@@ -85,6 +85,7 @@ public class BinaryTree<T> implements Tree<T>
         {
             add(value, root);
         }
+        size++;
     }
 
     private void add(T val, Node<T> parent)
