@@ -11,13 +11,13 @@ public class Main
         tree.add(10);
         tree.add(9);
         tree.add(8);
+        tree.add(20);
+        tree.add(24);
+        tree.add(5);
+        tree.add(16);
 
-        tree.print();
+        tree.remove(24);
 
-        System.out.println(tree.search(9));
-        tree.remove(10);
-        tree.remove(9);
-        tree.remove(8);
         tree.print();
 
     }

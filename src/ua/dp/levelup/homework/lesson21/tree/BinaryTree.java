@@ -44,7 +44,7 @@ public class BinaryTree<T> implements Tree<T>
 
         public void setLeft(Node<V> left)
         {
-            left.setParent(this);
+            if (left != null) left.setParent(this);
             this.left = left;
         }
 
@@ -55,7 +55,7 @@ public class BinaryTree<T> implements Tree<T>
 
         public void setRight(Node<V> right)
         {
-            right.setParent(this);
+            if (right != null) right.setParent(this);
             this.right = right;
         }
 
@@ -117,10 +117,8 @@ public class BinaryTree<T> implements Tree<T>
 
     public Node<T> search(T value)
     {
-        if (root == null)
-            return null;
-        else
-            return search(value, root);
+        if (root == null) return null;
+        else return search(value, root);
     }
 
     private Node<T> search(T value, Node<T> parent)
@@ -130,16 +128,12 @@ public class BinaryTree<T> implements Tree<T>
             return parent;
         } else if (comparator.compare(value, parent.getValue()) < 0)
         {
-            if (parent.getLeft() == null)
-                return null;
-            else
-                return search(value, parent.getLeft());
+            if (parent.getLeft() == null) return null;
+            else return search(value, parent.getLeft());
         } else if (comparator.compare(value, parent.getValue()) > 0)
         {
-            if (parent.getRight() == null)
-                return null;
-            else
-                return search(value, parent.getRight());
+            if (parent.getRight() == null) return null;
+            else return search(value, parent.getRight());
         }
         return null;
     }
@@ -147,45 +141,110 @@ public class BinaryTree<T> implements Tree<T>
     @Override
     public void addAll(T[] value)
     {
-
+        for (T v : value)
+        {
+            add(v);
+        }
     }
 
     @Override
     public void remove(T value)
     {
         if (root == null) return;
-        Node<T> node = search(value);
-        if (null != node)
+        Node<T> currentNode = search(value);
+        if (null != currentNode)
         {
-            if (root == node)
-            {
-                if (null == root.getLeft() && null == root.getRight())
-                {
-                    root = null;
-                    return;
-                }
-                if (null != root.getLeft() && null == root.getRight())
-                {
-                    root = root.getLeft();
-                    return;
-                }
-                if (null == root.getLeft() && null != root.getRight())
-                {
-                    root = root.getRight();
-                }
-            } else if (null == node.getLeft() && null == node.getRight())
-            {
-                if (comparator.compare(value, node.getParent().getValue()) < 0)
-                {
+            size--;
 
+            Node<T> parent = currentNode.getParent();
+            // Case 1: If current has no right child, current's left replaces current.
+            if (currentNode.getRight() == null)
+            {
+                if (parent == null)
+                {
+                    root = currentNode.getLeft();
+                } else
+                {
+                    int result = comparator.compare(parent.getValue(), value);
+                    if (result > 0)
+                    {
+                        // If parent value is greater than current value,
+                        // make the current left child a left child of parent.
+                        parent.setLeft(currentNode.getLeft());
+                    } else if (result < 0)
+                    {
+                        // If parent value is less than current value,
+                        // make the current left child a right child of parent.
+                        parent.setRight(currentNode.getLeft());
+                    }
+                }
+            }
+            // Case 2: If current's right child has no left child, current's right child
+            //         replaces current.
+            else if (currentNode.getRight().getLeft() == null)
+            {
+                currentNode.getRight().setLeft(currentNode.getLeft());
+
+                if (parent == null)
+                {
+                    root = currentNode.getRight();
+                } else
+                {
+                    int result = comparator.compare(parent.getValue(), value);
+                    if (result > 0)
+                    {
+                        // If parent value is greater than current value,
+                        // make the current right child a left child of parent.
+                        parent.setLeft(currentNode.getRight());
+                    } else if (result < 0)
+                    {
+                        // If parent value is less than current value,
+                        // make the current right child a right child of parent.
+                        parent.setRight(currentNode.getRight());
+                    }
+                }
+            }
+            // Case 3: If current's right child has a left child, replace current with current's
+            //         right child's left-most child.
+            else
+            {
+                // Find the right's left-most child.
+                Node<T> leftmost = currentNode.getRight().getLeft();
+                Node<T> leftmostParent = currentNode.getRight();
+
+                while (leftmost.getLeft() != null)
+                {
+                    leftmostParent = leftmost;
+                    leftmost = leftmost.getLeft();
+                }
+
+                // The parent's left subtree becomes the leftmost's right subtree.
+                leftmostParent.setLeft(leftmost.getRight());
+
+                // Assign leftmost's left and right to current's left and right children.
+                leftmost.setLeft(currentNode.getLeft());
+                leftmost.setRight(currentNode.getRight());
+
+                if (parent == null)
+                {
+                    root = leftmost;
+                } else
+                {
+                    int result = comparator.compare(parent.getValue(), value);
+                    if (result > 0)
+                    {
+                        // If parent value is greater than current value,
+                        // make leftmost the parent's left child.
+                        parent.setLeft(leftmost);
+                    } else if (result < 0)
+                    {
+                        // If parent value is less than current value,
+                        // make leftmost the parent's right child.
+                        parent.setRight(leftmost);
+                    }
                 }
             }
         }
-    }
-
-    public void remove(T value, Node<T> parent)
-    {
-
     }
 
     @Override
