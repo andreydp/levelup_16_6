@@ -213,4 +213,86 @@ class DoubleLinkedListTest extends Specification {
         then:
         list.size() == 2
     }
+
+    def "swap elements in empty list"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+
+        when:
+        list.swap(1, 3)
+
+        then:
+        thrown InvalidListIndexException
+    }
+
+    def "swap list with one element"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(new Node(1), 0)
+
+        when:
+        list.swap(0, 0)
+
+        then:
+        list.getFirst().get().getValue() == 1
+    }
+
+    def "swap first and last element in list with three elements"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(new Node(1), 0)
+        list.add(new Node(2), 1)
+        list.add(new Node(3), 2)
+
+        when:
+        list.swap(0, 2)
+
+        then:
+        list.getFirst().get().getValue() == 3
+        list.getLast().get().getValue() == 1
+    }
+
+    def "reverse swap first and last element in list with three elements"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(new Node(1), 0)
+        list.add(new Node(2), 1)
+        list.add(new Node(3), 2)
+
+        when:
+        list.swap(2, 0)
+
+        then:
+        list.getFirst().get().getValue() == 3
+        list.getLast().get().getValue() == 1
+    }
+
+    def "swap second and fourth element in list with five elements"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(new Node(1), 0)
+        list.add(new Node(2), 1)
+        list.add(new Node(3), 2)
+        list.add(new Node(4), 3)
+        list.add(new Node(6), 4)
+
+        when:
+        list.swap(1, 3)
+
+        then:
+        list.get(1).get().getValue() == 4
+        list.get(3).get().getValue() == 2
+    }
+
+    def "reverse swap second and fourth element in list with five elements"() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(new Node(1), 0)
+        list.add(new Node(2), 1)
+        list.add(new Node(3), 2)
+        list.add(new Node(4), 3)
+        list.add(new Node(6), 4)
+
+        when:
+        list.swap(3, 1)
+
+        then:
+        list.get(1).get().getValue() == 4
+        list.get(3).get().getValue() == 2
+    }
+
 }

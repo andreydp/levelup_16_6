@@ -12,11 +12,16 @@ public class Main
         list.addLast(new Node(1));
         list.addLast(new Node(2));
         list.addLast(new Node(3));
+        list.addLast(new Node(4));
+        list.addLast(new Node(5));
 
-        list.swap(1, 2);
+        list.swap(4, 1);
+        //        list.swap(0, 1);
 
         System.out.println(list.get(0));
         System.out.println(list.get(1));
         System.out.println(list.get(2));
+        System.out.println(list.get(3));
+        System.out.println(list.get(4));
     }
 }

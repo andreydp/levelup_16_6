@@ -15,7 +15,7 @@ public class Node<V>
         this.value = value;
     }
 
-    public Node<V> next()
+    public Node<V> getNext()
     {
         return next;
     }
@@ -23,7 +23,7 @@ public class Node<V>
     public void setNext(Node<V> next)
     {
         this.next = next;
-//        if (next != null) next.setPrev(this);
+//        if (getNext != null) getNext.setPrev(this);
     }
 
     public Node<V> getPrev()

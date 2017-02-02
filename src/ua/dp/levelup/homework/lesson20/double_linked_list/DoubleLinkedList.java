@@ -16,7 +16,7 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
     private Node<T> tail = null;
 
     @Override
-    public void add(Node node, int index)
+    public void add(Node<T> node, int index)
     {
         if (index < 0 || index > size || (null == head && index != 0)) throw new InvalidListIndexException();
         if (null == node) return;
@@ -31,7 +31,7 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
         } else
         {
             Node<T> tmp = get(index).get();
-            node.setNext(tmp.next());
+            node.setNext(tmp.getNext());
             node.setPrev(tmp);
             tmp.setNext(node);
         }
@@ -54,12 +54,12 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
             {
                 if (currentIndex == index)
                 {
-                    tmp.next().setPrev(tmp.getPrev());
-                    tmp.getPrev().setNext(tmp.next());
+                    tmp.getNext().setPrev(tmp.getPrev());
+                    tmp.getPrev().setNext(tmp.getNext());
                     size--;
                     break;
                 }
-                tmp = tmp.next();
+                tmp = tmp.getNext();
             }
         }
     }
@@ -82,7 +82,7 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
     }
 
     @Override
-    public void addLast(Node node)
+    public void addLast(Node<T> node)
     {
         if (null == node) return;
         if (null == tail)
@@ -108,8 +108,8 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
             tail = null;
         } else
         {
-            head.next().setPrev(null);
-            head = head.next();
+            head.getNext().setPrev(null);
+            head = head.getNext();
         }
         size--;
     }
@@ -152,11 +152,10 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
         for (int currentIndex = 0; currentIndex < size; currentIndex++)
         {
             if (currentIndex == index) break;
-            result = result.next();
+            result = result.getNext();
         }
         return Optional.ofNullable(result);
     }
-
 
     @Override
     public boolean isEmpty()
@@ -188,7 +187,7 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
             {
                 if (!hasNext()) throw new NoSuchElementException();
                 Node<T> tmp = cursor;
-                cursor = tmp.next();
+                cursor = tmp.getNext();
                 return tmp;
             }
         };
@@ -205,6 +204,7 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
             {
                 return null != cursor;
             }
+
             @Override
             public Node<T> next()
             {
@@ -218,17 +218,79 @@ public class DoubleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
 
     public void swap(int nodeA, int nodeB)
     {
-        Node<T> tmpA = get(nodeA).get();
-        Node<T> tmpB = get(nodeB).get();
+        if (nodeA < 0 || nodeA >= size || nodeB < 0 || nodeB >= size) throw new InvalidListIndexException();
+        if (nodeA == nodeB) return;
 
-        if (tmpA.getPrev() == tmpB)
-        {
-            tmpB.setNext(tmpA.next());
-            tmpA.setPrev(tmpB.getPrev());
-            tmpA.setNext(tmpB);
-        } else if (tmpA.next() == tmpB)
-        {
+        Node<T> ANode = get(nodeA).get();
+        Node<T> BNode = get(nodeB).get();
 
+        Node<T> ANodePrev = ANode.getPrev();
+        Node<T> BNodePrev = BNode.getPrev();
+
+        Node<T> ANodeNext = ANode.getNext();
+        Node<T> BNodeNext = BNode.getNext();
+
+        if (BNode == ANodeNext)
+        {
+            BNode.setNext(ANode);
+            BNode.setPrev(ANodePrev);
+            ANode.setNext(BNodeNext);
+            ANode.setPrev(BNode);
+            BNodeNext.setPrev(ANode);
+            if (null == ANodePrev)
+            {
+                head = BNode;
+            } else
+            {
+                ANodePrev.setNext(BNode);
+            }
+        } else if (ANode == BNodeNext)
+        {
+            ANode.setNext(BNode);
+            ANode.setPrev(BNodePrev);
+            BNode.setNext(ANodeNext);
+            BNode.setPrev(ANode);
+            if (null == BNodePrev)
+            {
+                head = ANode;
+            } else
+            {
+                BNodePrev.setNext(BNode);
+            }
+        } else
+        {
+            if (null == ANodePrev)
+            {
+                head = BNode;
+            } else
+            {
+                ANodePrev.setNext(BNode);
+            }
+            BNode.setNext(ANodeNext);
+            if (null == BNodePrev)
+            {
+                head = ANode;
+            } else
+            {
+                BNodePrev.setNext(ANode);
+            }
+            ANode.setNext(BNodeNext);
+            BNode.setPrev(ANodePrev);
+            if (null == BNodeNext)
+            {
+                tail = ANode;
+            } else
+            {
+                BNodeNext.setPrev(ANode);
+            }
+            ANode.setPrev(BNodePrev);
+            if (null == ANodeNext)
+            {
+                tail = BNode;
+            } else
+            {
+                ANodeNext.setPrev(BNode);
+            }
         }
     }
 }
