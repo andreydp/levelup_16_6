@@ -118,14 +118,13 @@ public class SingleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
     @Override
     public void removeLast()
     {
-        Node<T> first = root;
-        if (null == first) return;
-        if (null == first.next())
+        if (null == root) return;
+        if (null == root.next())
         {
             root = null;
         } else
         {
-            Node<T> tmp = first.next();
+            Node<T> tmp = root.next();
             Node<T> prev = tmp;
             while (null != tmp.next())
             {

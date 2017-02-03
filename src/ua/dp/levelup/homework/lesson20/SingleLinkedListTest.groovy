@@ -102,6 +102,20 @@ class SingleLinkedListTest extends Specification {
         list.size() == 1
         list.getFirst().get().getValue() == 5;
     }
+
+    //TODO: this test is failing for some reason...
+    def "remove last on a list with two elements"() {
+        SingleLinkedList list = new SingleLinkedList();
+        when: "add node element"
+        list.addFirst(new Node(5));
+        list.addFirst(new Node(7));
+        list.removeLast()
+
+        then: "check size and first element value"
+        list.size() == 1
+        list.getFirst().get().getValue() == 5;
+    }
+
     def "remove last on an empty list"() {
         SingleLinkedList list = new SingleLinkedList();
         when: "remove last"
@@ -179,7 +193,6 @@ class SingleLinkedListTest extends Specification {
         list.size() == 2
         list.get(1).get().value == 2
     }
-
 
     def "remove an element on 0 index to an empty list"()
     {
