@@ -124,7 +124,7 @@ public class SingleLinkedList<T> extends AbstractList<Node<T>> implements Iterab
             root = null;
         } else
         {
-            Node<T> tmp = root.next();
+            Node<T> tmp = root;
             Node<T> prev = tmp;
             while (null != tmp.next())
             {

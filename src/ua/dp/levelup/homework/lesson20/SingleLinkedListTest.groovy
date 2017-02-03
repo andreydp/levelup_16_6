@@ -113,7 +113,7 @@ class SingleLinkedListTest extends Specification {
 
         then: "check size and first element value"
         list.size() == 1
-        list.getFirst().get().getValue() == 5;
+        list.getFirst().get().getValue() == 7;
     }
 
     def "remove last on an empty list"() {
