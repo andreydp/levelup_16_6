@@ -1,8 +1,8 @@
-package ua.dp.levelup.homework.lesson28;
+package ua.dp.levelup.homework.lesson28.Task1;
 
-import ua.dp.levelup.homework.lesson28.entity.Department;
-import ua.dp.levelup.homework.lesson28.entity.impl.Developer;
-import ua.dp.levelup.homework.lesson28.util.CmdLineParser;
+import ua.dp.levelup.homework.lesson28.Task1.entity.Department;
+import ua.dp.levelup.homework.lesson28.Task1.entity.impl.Developer;
+import ua.dp.levelup.homework.lesson28.Task1.util.CmdLineParser;
 
 import java.util.*;
 
@@ -26,7 +26,8 @@ public class DMDSoft
 
     void initialize()
     {
-        Department devDepartment = new Department("Developers", Arrays.asList(
+        Department devDepartment = new Department("Developers");
+        devDepartment.addEmployeesList(Arrays.asList(
                 new Developer("Mark", "Tsukerberg", 5000),
                 new Developer("Gabe", "Newell", 4000),
                 new Developer("Bill", "Gates", 5000),
@@ -36,7 +37,8 @@ public class DMDSoft
                 new Developer("Barak", "Obama", 9000),
                 new Developer("John", "Doe", 2000)
         ));
-        Department managerDepartment = new Department("Managers", Arrays.asList(
+        Department managerDepartment = new Department("Managers");
+        managerDepartment.addEmployeesList(Arrays.asList(
                 new Developer("Mark", "Tsukerberg", 5000),
                 new Developer("Gabe", "Newell", 4000),
                 new Developer("Bill", "Gates", 5000),
@@ -49,6 +51,6 @@ public class DMDSoft
         departmentList.add(devDepartment);
         departmentList.add(managerDepartment);
 
-        CmdLineParser cmdLineParser = new CmdLineParser();
+        new CmdLineParser();
     }
 }

@@ -1,6 +1,5 @@
 package ua.dp.levelup.homework.lesson24;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 
@@ -163,7 +162,7 @@ public class Home implements Comparable
     }
 
     @Override
-    public int compareTo(@NotNull Object o)
+    public int compareTo( Object o)
     {
         Home home = (Home) o;
         if (streetComparator().compare(this, home) == 0

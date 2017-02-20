@@ -1,4 +1,4 @@
-package ua.dp.levelup.homework.lesson28.entity;
+package ua.dp.levelup.homework.lesson28.Task1.entity;
 
 /**
  * Created by andreypo on 2/17/2017.
@@ -14,6 +14,14 @@ public abstract class Employee
     public Employee(String firstName, String lastName, Integer salary)
     {
         employeeId = employeeCount++;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+
+    public Employee(Integer employeeId, String firstName, String lastName, Integer salary)
+    {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -58,7 +66,6 @@ public abstract class Employee
     protected void finalize() throws Throwable
     {
         super.finalize();
-        employeeCount--;
     }
 
     @Override
