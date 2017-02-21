@@ -16,4 +16,15 @@ public class Manager extends Employee
     {
         super(employeeId, firstName, lastName, salary);
     }
+
+    @Override
+    public String toString()
+    {
+        return "Manager{" +
+                "employeeId=" + getEmployeeId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", salary=" + getSalary() +
+                '}';
+    }
 }

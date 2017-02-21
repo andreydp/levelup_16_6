@@ -16,4 +16,15 @@ public class Developer extends Employee
     {
         super(employeeId, firstName, lastName, salary);
     }
+
+    @Override
+    public String toString()
+    {
+        return "Developers{" +
+                "employeeId=" + getEmployeeId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", salary=" + getSalary() +
+                '}';
+    }
 }
