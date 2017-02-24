@@ -72,8 +72,6 @@ public class Explorer
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(aFile, true)))
                 {
                     writer.write(sb.toString());
-                    writer.flush();
-                    writer.close();
                     System.out.println("OK");
                     break;
                 } catch (IOException e)

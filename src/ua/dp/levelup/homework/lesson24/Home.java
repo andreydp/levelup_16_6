@@ -145,8 +145,6 @@ public class Home implements Comparable
     {
         int result = number;
         result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + stageCount;
-        result = 31 * result + tenantCount;
         return result;
     }
 

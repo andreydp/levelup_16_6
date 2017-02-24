@@ -23,6 +23,7 @@ public class Main
         homeSet.add(new Home(3, "Lenina", 4, 80));
         homeSet.add(new Home(99, "Rabochaya", 1, 125));
         homeSet.add(new Home(123, "glinki", 2, 100));
+        System.out.println(homeSet.size());
 
 
         LinkedHashSet<Home> homeSet2 = new LinkedHashSet<>();
@@ -38,6 +39,7 @@ public class Main
         homeSet2.add(new Home(99, "Rabochaya", 1, 125));
         homeSet2.add(new Home(123, "glinki", 2, 100));
 
+        System.out.println(homeSet2.size());
 
         TreeSet<Home> homeSet3 = new TreeSet<>(Home.streetComparator());
         homeSet3.add(new Home(27, "Gagarina", 12, 50));
@@ -54,6 +56,8 @@ public class Main
 
         System.out.println(homeSet3.size());
         homeSet3.forEach(System.out::println);
+
+        System.out.println();
 
     }
 }

@@ -56,7 +56,7 @@ public class FormulaChecker
             if (!formulaHolderList.isEmpty())
             {
                 List<String> result = new ArrayList<>();
-                for (FormulaHolder fh: formulaHolderList)
+                for (FormulaHolder fh : formulaHolderList)
                 {
                     result.add(fh.getFailedFormula());
                     result.add(fh.getFailedPointersString());
