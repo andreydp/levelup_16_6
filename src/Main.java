@@ -5,6 +5,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        String s;
+        String s = "01012018.0";
+        System.out.println(s.substring(0, s.indexOf(".")));
     }
 }

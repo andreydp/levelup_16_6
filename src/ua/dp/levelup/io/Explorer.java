@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Explorer
 {
-    private static final String DEFAULT_PATH = "/Users/andrey";
+    private static final String DEFAULT_PATH = "D:/";
     private static File currentDir = new File(DEFAULT_PATH);
 
     public static void main(String[] args)
@@ -28,17 +28,14 @@ public class Explorer
             if (line.startsWith("printDirs"))
             {
                 printAllDirectories(currentDir);
-            }
-            else if (line.startsWith("printFiles"))
+            } else if (line.startsWith("printFiles"))
             {
                 printAllFiles(currentDir);
-            }
-            else if (line.startsWith("open"))
+            } else if (line.startsWith("open"))
             {
                 openTextFile(line, currentDir);
-            }
-            else if (line.startsWith("mkDir"))
-            {      //mkDir newFolderName
+            } else if (line.startsWith("mkDir"))
+            {
                 createNewFolder(line, currentDir);
             } else if (line.startsWith("mkFile"))
             {
@@ -52,8 +49,45 @@ public class Explorer
             } else if (line.startsWith("exit"))
             {
                 break;
+            } else if (line.startsWith("edit"))
+            {
+                saveTextToFile(line, currentDir, scanner);
             }
         }
+    }
+
+    private static void saveTextToFile(String line, File parent, Scanner scanner)
+    {
+        openTextFile(line, parent);
+        String fileName = line.split("\\s+")[1];
+
+        File aFile = new File(parent, fileName);
+        StringBuilder sb = new StringBuilder();
+        while (true)
+        {
+            System.out.print(currentDir.getPath() + ">");
+            String newLine = scanner.nextLine();
+            if (newLine.startsWith("save"))
+            {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(aFile, true)))
+                {
+                    writer.write(sb.toString());
+                    writer.flush();
+                    writer.close();
+                    System.out.println("OK");
+                    break;
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+            } else
+            {
+                sb.append(newLine);
+                sb.append("\r\n");
+            }
+        }
+
     }
 
     private static void changeDirectory(String line)
@@ -176,10 +210,14 @@ public class Explorer
                     {
                         System.out.println(currentLine);
                     }
+                    reader.close();
                 } catch (IOException e)
                 {
                     System.out.println("There was an error opening file!");
                 }
+            } else
+            {
+                System.out.println("File does not exist");
             }
         }
     }
