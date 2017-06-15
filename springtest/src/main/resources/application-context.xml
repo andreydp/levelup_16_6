@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--<bean id="greetingBean" class="ua.dp.levelup.Greeting">-->
+        <!--<constructor-arg name="message" value="Hello guys!!!"/>-->
+    <!--</bean>-->
+
+    <bean id="car1" class="ua.dp.levelup.entity.Car">
+        <property name="color" value="BLACK"/>
+        <property name="maxSpeed" value="160"/>
+        <property name="model" value="Mercedes"/>
+
+    </bean>
+    <bean id="car2" class="ua.dp.levelup.entity.Car">
+        <constructor-arg name="color" value="RED"/>
+        <constructor-arg name="maxSpeed" value="220"/>
+        <constructor-arg name="model" value="BMW"/>
+
+    </bean>
+
+
+</beans>
