@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="pc1Bean" class="entity.PC">
+        <property name="HDD" value="WD500GB" />
+        <property name="ram" value="16" />
+        <property name="owner" ref="user1Bean" />
+    </bean>
+
+    <bean id="user1Bean" class="entity.User">
+        <constructor-arg name="name" value="Andrey"/>
+        <constructor-arg name="lastName" value="Poletaev"/>
+    </bean>
+
+    <bean id="userService1" class="entity.UserService">
+
+    </bean>
+    <bean id="profilingBeanPostProcessor" class="entity.ProfilingBeanPostProcessor">
+
+    </bean>
+</beans>
